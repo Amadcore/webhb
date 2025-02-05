@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telegram Web App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background: #f0f0f0; padding: 20px; }
+        button { padding: 10px; background: #007bff; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Привет, Telegram!</h1>
+    <button onclick="sendData()">Отправить данные боту</button>
+
+    <script>
+        // Инициализация Web App
+        const tg = window.Telegram.WebApp;
+
+        // Показываем основную кнопку
+        tg.MainButton.setText("Закрыть").show().onClick(() => tg.close());
+
+        // Функция для отправки данных
+        function sendData() {
+            tg.sendData("Данные отправлены!");
+        }
+
+        // Получаем данные от бота (например, user ID)
+        const user = tg.initDataUnsafe.user;
+        console.log("User ID:", user?.id);
+    </script>
+</body>
+</html>
