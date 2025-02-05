@@ -3,25 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Art Boost Hub - Платформа для продвижения Telegram-каналов</title>
+  <title>Hellbrush Guild</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Общие стили */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Сброс и базовые стили */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: #0f172a;
       color: #f8fafc;
       line-height: 1.6;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
+    /* Шапка и меню */
     header {
       background: #1e293b;
       padding: 20px;
@@ -37,67 +31,50 @@
       margin-top: 10px;
     }
     nav a {
-      margin: 0 10px;
+      margin: 0 15px;
       font-weight: 600;
       transition: color 0.3s ease;
     }
-    nav a:hover {
-      color: #a855f7;
-    }
+    nav a:hover { color: #a855f7; }
+    /* Контейнер страницы */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
     }
-    section {
-      margin-bottom: 60px;
+    /* Вкладки */
+    .tab {
+      display: none;
     }
-    /* Hero секция */
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
+    .tab.active {
+      display: block;
     }
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
+    /* Кнопки */
     .btn {
       background: linear-gradient(45deg, #6366f1, #a855f7);
       padding: 10px 20px;
       border-radius: 8px;
       color: white;
       font-weight: 600;
+      cursor: pointer;
       transition: background 0.3s ease;
+      border: none;
     }
     .btn:hover {
       background: linear-gradient(45deg, #4f46e5, #a855f7);
     }
-    /* Секция "О проекте" */
-    .about {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    /* Сообщение о подписке */
+    .subscribe-notice {
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
       text-align: center;
     }
-    .about h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .about p {
-      max-width: 800px;
-      margin-bottom: 20px;
-    }
-    /* Секция "Ферма лайков" */
+    /* Стили для игры */
     .game-section {
       text-align: center;
-    }
-    .game-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      padding: 40px 0;
     }
     #tap-area {
       width: 200px;
@@ -112,11 +89,11 @@
       cursor: pointer;
       user-select: none;
       position: relative;
-      margin: 0 auto;
+      margin: 0 auto 20px;
     }
     #like-counter {
-      margin-top: 20px;
       font-size: 1.5rem;
+      margin-bottom: 20px;
     }
     .heart {
       position: absolute;
@@ -126,93 +103,164 @@
       pointer-events: none;
     }
     @keyframes floatUp {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-50px); }
     }
+    /* Прокачка */
+    .upgrade {
+      background: #1e293b;
+      padding: 15px;
+      margin: 10px auto;
+      border-radius: 8px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .upgrade p { margin-bottom: 10px; }
+    .upgrade .btn { margin-top: 10px; }
     /* Футер */
     footer {
       text-align: center;
       padding: 20px;
       background: #1e293b;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <!-- Шапка сайта -->
+  <!-- Шапка -->
   <header>
-    <h1>Art Boost Hub</h1>
+    <h1>Hellbrush Guild</h1>
     <nav>
-      <a href="#hero">Главная</a>
-      <a href="#about">О проекте</a>
-      <a href="#game">Ферма лайков</a>
+      <a href="#main" onclick="switchTab('main')">Главная</a>
+      <a href="#game" onclick="switchTab('game')">Игра</a>
     </nav>
   </header>
-  
-  <div class="container">
-    <!-- Hero секция -->
-    <section id="hero" class="hero">
-      <h2>Добро пожаловать на Art Boost Hub</h2>
-      <p>Платформа для продвижения Telegram-каналов с уникальной реферальной системой. Стань популярным, приглашай новых участников и расти вместе с нами!</p>
-      <a href="#game" class="btn">Попробуй ферму лайков</a>
-    </section>
-    
-    <!-- Секция "О проекте" -->
-    <section id="about" class="about">
-      <h2>О проекте</h2>
-      <p>Art Boost Hub — это инновационный сервис для продвижения Telegram-каналов, где каждый участник получает возможность создавать свою пирамиду популярности. Используй реферальную систему, участвуй в конкурсах и получай реальные бонусы за активность.</p>
-      <p>Мы помогаем тебе не только расти в Telegram, но и вдохновляем на творчество. Вместе с платформой ты сможешь обмениваться опытом, получать аналитику и находить партнёров для взаимного пиара.</p>
-    </section>
-    
-    <!-- Секция "Ферма лайков" -->
-    <section id="game" class="game-section">
-      <h2>Ферма лайков</h2>
-      <div id="tap-area">Тап!</div>
-      <div id="like-counter">0 Лайков</div>
-      <p>Нажимай, чтобы зарабатывать лайки и набирать бонусы для продвижения твоего канала!</p>
-    </section>
-  </div>
-  
-  <!-- Футер -->
-  <footer>
-    <p>&copy; 2025 Art Boost Hub. Все права защищены.</p>
-  </footer>
-  
-  <script>
-    let likes = 0;
-    const tapArea = document.getElementById('tap-area');
-    const likeCounter = document.getElementById('like-counter');
 
+  <div class="container">
+    <!-- Главная страница -->
+    <div id="main" class="tab active">
+      <section class="hero" style="text-align: center; padding: 40px 20px;">
+        <h2>Добро пожаловать в Hellbrush Guild</h2>
+        <p>Платформа для творческого продвижения Telegram-каналов. Мы помогаем стать популярным, объединяя людей в едином сообществе.</p>
+        <div class="subscribe-notice">
+          <p><strong>Обязательная подписка для участия в рейтингах:</strong></p>
+          <p><a class="btn" href="https://t.me/hellbrush_art" target="_blank">Подпишись на @hellbrush_art</a></p>
+          <!-- Дополнительные каналы можно добавить динамически или прочитать из отдельного файла -->
+          <p>И подписывайтесь на наши партнерские каналы!</p>
+        </div>
+        <p>Получай бонусы за приглашения, участвуй в конкурсах и прокачивай свой канал. Всё очень завуалированно, чтобы было приятно простому творческому человеку.</p>
+      </section>
+    </div>
+
+    <!-- Страница игры -->
+    <div id="game" class="tab">
+      <section class="game-section">
+        <h2>Ферма лайков</h2>
+        <div id="tap-area">Тап!</div>
+        <div id="like-counter">0 Лайков</div>
+        <p>Зарабатывай лайки, улучшай свои навыки и поднимайся в рейтинге!</p>
+        <!-- Прокачка: пример апгрейда -->
+        <div class="upgrade">
+          <p><strong>Улучшение: Множитель лайков</strong></p>
+          <p>Текущий множитель: <span id="multiplier">1</span>x</p>
+          <button class="btn" onclick="upgradeMultiplier()">Улучшить (Цена: <span id="upgrade-cost">10</span> лайков)</button>
+        </div>
+        <!-- Кнопка для сброса прогресса (на время тестирования) -->
+        <button class="btn" onclick="resetGame()">Сбросить прогресс</button>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
+  </footer>
+
+  <script>
+    // Переключение между вкладками
+    function switchTab(tabId) {
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    /* --- Логика игры --- */
+    let likes = 0;
+    let multiplier = 1;
+    let upgradeCost = 10;
+
+    // Попытка загрузить сохранения из localStorage
+    function loadGame() {
+      const savedLikes = localStorage.getItem('likes');
+      const savedMultiplier = localStorage.getItem('multiplier');
+      const savedCost = localStorage.getItem('upgradeCost');
+      if (savedLikes !== null) likes = parseInt(savedLikes);
+      if (savedMultiplier !== null) multiplier = parseInt(savedMultiplier);
+      if (savedCost !== null) upgradeCost = parseInt(savedCost);
+      updateDisplay();
+    }
+
+    function saveGame() {
+      localStorage.setItem('likes', likes);
+      localStorage.setItem('multiplier', multiplier);
+      localStorage.setItem('upgradeCost', upgradeCost);
+    }
+
+    function updateDisplay() {
+      document.getElementById('like-counter').textContent = likes + (likes === 1 ? ' Лайк' : ' Лайков');
+      document.getElementById('multiplier').textContent = multiplier;
+      document.getElementById('upgrade-cost').textContent = upgradeCost;
+    }
+
+    // Обработка клика по зоне игры
+    const tapArea = document.getElementById('tap-area');
     tapArea.addEventListener('click', function(e) {
-      // Увеличиваем счетчик лайков
-      likes++;
-      likeCounter.textContent = likes + (likes === 1 ? ' Лайк' : ' Лайков');
+      // Увеличиваем счетчик с учётом множителя
+      likes += multiplier;
+      updateDisplay();
+      saveGame();
 
       // Создаем анимированное сердечко
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.textContent = '❤️';
 
-      // Определяем позицию клика относительно tapArea
+      // Позиционируем сердечко относительно клика
       const rect = tapArea.getBoundingClientRect();
       const offsetX = e.clientX - rect.left;
       const offsetY = e.clientY - rect.top;
-      heart.style.left = (offsetX - 10) + 'px'; // смещение для центрирования
+      heart.style.left = (offsetX - 10) + 'px';
       heart.style.top = (offsetY - 10) + 'px';
 
-      // Добавляем сердечко в tapArea
       tapArea.appendChild(heart);
-
-      // Удаляем сердечко после завершения анимации
-      setTimeout(() => {
-        heart.remove();
-      }, 1000);
+      setTimeout(() => heart.remove(), 1000);
     });
+
+    // Функция улучшения множителя
+    function upgradeMultiplier() {
+      if (likes >= upgradeCost) {
+        likes -= upgradeCost;
+        multiplier++;
+        upgradeCost = Math.floor(upgradeCost * 1.5);
+        updateDisplay();
+        saveGame();
+      } else {
+        alert('Недостаточно лайков для улучшения!');
+      }
+    }
+
+    // Сброс игры (для теста)
+    function resetGame() {
+      if (confirm('Вы уверены, что хотите сбросить прогресс?')) {
+        likes = 0;
+        multiplier = 1;
+        upgradeCost = 10;
+        updateDisplay();
+        saveGame();
+      }
+    }
+
+    // Загрузка сохраненного состояния при загрузке страницы
+    loadGame();
   </script>
 </body>
 </html>
