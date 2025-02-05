@@ -4,101 +4,225 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hellbrush Guild</title>
+  <!-- Используем шрифт, похожий на SF Pro или Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Сброс и базовые стили */
+    /* Сброс стилей */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
+      background-color: #f2f2f7;
+      color: #1c1c1e;
       line-height: 1.6;
     }
     a { text-decoration: none; color: inherit; }
-    /* Шапка и меню */
+    
+    /* Шапка */
     header {
-      background: #1e293b;
-      padding: 20px;
-      text-align: center;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
+      font-weight: 700;
       background: linear-gradient(45deg, #6366f1, #a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    nav {
-      margin-top: 10px;
+    nav ul {
+      display: flex;
+      list-style: none;
     }
-    nav a {
-      margin: 0 15px;
-      font-weight: 600;
+    nav ul li {
+      margin-left: 30px;
+    }
+    nav ul li a {
+      font-size: 1rem;
+      font-weight: 500;
       transition: color 0.3s ease;
     }
-    nav a:hover { color: #a855f7; }
-    /* Контейнер страницы */
+    nav ul li a:hover {
+      color: #a855f7;
+    }
+    
+    /* Основной контейнер */
     .container {
       max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-    /* Вкладки */
-    .tab {
-      display: none;
+    
+    /* Секции */
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid #e5e5ea;
     }
-    .tab.active {
-      display: block;
+    section:last-of-type { border-bottom: none; }
+    
+    /* Hero (Главная) */
+    .hero {
+      text-align: center;
     }
-    /* Кнопки */
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      color: #3c3c43;
+    }
     .btn {
+      display: inline-block;
       background: linear-gradient(45deg, #6366f1, #a855f7);
-      padding: 10px 20px;
-      border-radius: 8px;
-      color: white;
+      color: #ffffff;
+      padding: 12px 30px;
+      border-radius: 12px;
       font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      border: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .btn:hover {
-      background: linear-gradient(45deg, #4f46e5, #a855f7);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
-    /* Сообщение о подписке */
+    
+    /* Блок подписки */
     .subscribe-notice {
-      background: #1e293b;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px 0;
+      background: #ffffff;
+      border: 1px solid #d1d1d6;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .subscribe-notice p {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #3c3c43;
+    }
+    
+    /* Каталог каналов */
+    .catalog {
+      margin-top: 40px;
+    }
+    .catalog h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    .channel-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .channel-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
+    }
+    .channel-card:hover {
+      transform: translateY(-5px);
+    }
+    .channel-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+    .channel-card p {
+      font-size: 0.95rem;
+      color: #3c3c43;
+      margin-bottom: 10px;
+    }
+    .rating {
+      font-size: 0.9rem;
+      color: #a855f7;
+      font-weight: 600;
+    }
+    
+    /* Личный кабинет */
+    .profile {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .profile h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .profile .stats {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+    .profile .stats div {
       text-align: center;
     }
-    /* Стили для игры */
+    .profile .stats div span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #6366f1;
+    }
+    
+    /* Страница игры */
     .game-section {
       text-align: center;
-      padding: 40px 0;
+    }
+    .game-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
     }
     #tap-area {
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
       background: linear-gradient(45deg, #6366f1, #a855f7);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-      color: white;
+      color: #ffffff;
       cursor: pointer;
       user-select: none;
       position: relative;
       margin: 0 auto 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     #like-counter {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-bottom: 20px;
     }
     .heart {
       position: absolute;
-      font-size: 1.5rem;
-      color: #ff4d4d;
+      font-size: 1.6rem;
+      color: #ff453a;
       animation: floatUp 1s ease-out forwards;
       pointer-events: none;
     }
@@ -106,89 +230,127 @@
       from { opacity: 1; transform: translateY(0); }
       to { opacity: 0; transform: translateY(-50px); }
     }
-    /* Прокачка */
     .upgrade {
-      background: #1e293b;
-      padding: 15px;
-      margin: 10px auto;
-      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #d1d1d6;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 12px;
       max-width: 400px;
       text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     .upgrade p { margin-bottom: 10px; }
-    .upgrade .btn { margin-top: 10px; }
+    
     /* Футер */
     footer {
-      text-align: center;
+      background-color: #ffffff;
       padding: 20px;
-      background: #1e293b;
-      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #8e8e93;
+      border-top: 1px solid #e5e5ea;
     }
   </style>
 </head>
 <body>
   <!-- Шапка -->
   <header>
-    <h1>Hellbrush Guild</h1>
-    <nav>
-      <a href="#main" onclick="switchTab('main')">Главная</a>
-      <a href="#game" onclick="switchTab('game')">Игра</a>
-    </nav>
+    <div class="header-container">
+      <h1>Hellbrush Guild</h1>
+      <nav>
+        <ul>
+          <li><a href="#hero">Главная</a></li>
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#profile">Личный кабинет</a></li>
+          <li><a href="#game">Игра</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
-
+  
+  <!-- Основной контейнер -->
   <div class="container">
-    <!-- Главная страница -->
-    <div id="main" class="tab active">
-      <section class="hero" style="text-align: center; padding: 40px 20px;">
-        <h2>Добро пожаловать в Hellbrush Guild</h2>
-        <p>Платформа для творческого продвижения Telegram-каналов. Мы помогаем стать популярным, объединяя людей в едином сообществе.</p>
-        <div class="subscribe-notice">
-          <p><strong>Обязательная подписка для участия в рейтингах:</strong></p>
-          <p><a class="btn" href="https://t.me/hellbrush_art" target="_blank">Подпишись на @hellbrush_art</a></p>
-          <!-- Дополнительные каналы можно добавить динамически или прочитать из отдельного файла -->
-          <p>И подписывайтесь на наши партнерские каналы!</p>
+    <!-- Hero секция -->
+    <section id="hero" class="hero">
+      <h2>Добро пожаловать в Hellbrush Guild</h2>
+      <p>Платформа для творческого продвижения Telegram‑каналов. Мы объединяем людей, чтобы ты стал популярным и развивал свой канал в комфортной и эстетичной атмосфере.</p>
+      <a class="btn" href="#game">Начни прокачку</a>
+      <div class="subscribe-notice">
+        <p>Для участия в рейтингах обязательна подписка:</p>
+        <a class="btn" href="https://t.me/hellbrush_art" target="_blank">Подпишись на @hellbrush_art</a>
+        <p>И подписывайся на наши партнерские каналы.</p>
+      </div>
+    </section>
+    
+    <!-- Каталог каналов -->
+    <section id="catalog" class="catalog">
+      <h2>Каталог каналов</h2>
+      <div class="channel-list">
+        <!-- Пример карточки канала -->
+        <div class="channel-card">
+          <h3>@artchannel1</h3>
+          <p>Канал о цифровом искусстве и 3D моделировании.</p>
+          <div class="rating">Рейтинг: 4.8/5</div>
         </div>
-        <p>Получай бонусы за приглашения, участвуй в конкурсах и прокачивай свой канал. Всё очень завуалированно, чтобы было приятно простому творческому человеку.</p>
-      </section>
-    </div>
-
-    <!-- Страница игры -->
-    <div id="game" class="tab">
-      <section class="game-section">
-        <h2>Ферма лайков</h2>
-        <div id="tap-area">Тап!</div>
-        <div id="like-counter">0 Лайков</div>
-        <p>Зарабатывай лайки, улучшай свои навыки и поднимайся в рейтинге!</p>
-        <!-- Прокачка: пример апгрейда -->
-        <div class="upgrade">
-          <p><strong>Улучшение: Множитель лайков</strong></p>
-          <p>Текущий множитель: <span id="multiplier">1</span>x</p>
-          <button class="btn" onclick="upgradeMultiplier()">Улучшить (Цена: <span id="upgrade-cost">10</span> лайков)</button>
+        <div class="channel-card">
+          <h3>@creativehub</h3>
+          <p>Площадка для творческих людей, советы и мастер-классы.</p>
+          <div class="rating">Рейтинг: 4.5/5</div>
         </div>
-        <!-- Кнопка для сброса прогресса (на время тестирования) -->
-        <button class="btn" onclick="resetGame()">Сбросить прогресс</button>
-      </section>
-    </div>
+        <div class="channel-card">
+          <h3>@designzone</h3>
+          <p>Новости дизайна, тренды и лучшие проекты.</p>
+          <div class="rating">Рейтинг: 4.7/5</div>
+        </div>
+        <!-- Можно добавить динамическое наполнение карточек -->
+      </div>
+    </section>
+    
+    <!-- Личный кабинет -->
+    <section id="profile" class="profile">
+      <h2>Личный кабинет</h2>
+      <div class="stats">
+        <div>
+          <span id="user-invites">0</span>
+          Приглашений
+        </div>
+        <div>
+          <span id="user-rank">Новичок</span>
+          Ранг
+        </div>
+      </div>
+      <p>Получайте бонусы за активность, улучшайте свой рейтинг и прокачивайте канал с Hellbrush Guild!</p>
+      <a class="btn" href="https://t.me/YourBotUsername?start=profile" target="_blank">Управлять аккаунтом</a>
+    </section>
+    
+    <!-- Игра -->
+    <section id="game" class="game-section">
+      <h2>Ферма лайков</h2>
+      <div id="tap-area">Тап!</div>
+      <div id="like-counter">0 Лайков</div>
+      <p>Зарабатывайте лайки, улучшайте множитель и поднимайтесь в рейтинге!</p>
+      <div class="upgrade">
+        <p><strong>Улучшение: Множитель лайков</strong></p>
+        <p>Текущий множитель: <span id="multiplier">1</span>x</p>
+        <button class="btn" onclick="upgradeMultiplier()">Улучшить (Цена: <span id="upgrade-cost">10</span> лайков)</button>
+      </div>
+      <button class="btn" onclick="resetGame()">Сбросить прогресс</button>
+    </section>
   </div>
-
+  
+  <!-- Футер -->
   <footer>
     <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
   </footer>
-
+  
+  <!-- Скрипты для игры -->
   <script>
-    // Переключение между вкладками
-    function switchTab(tabId) {
-      const tabs = document.querySelectorAll('.tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-    }
-
-    /* --- Логика игры --- */
+    // Игра: Ферма лайков
     let likes = 0;
     let multiplier = 1;
     let upgradeCost = 10;
-
-    // Попытка загрузить сохранения из localStorage
+    
     function loadGame() {
       const savedLikes = localStorage.getItem('likes');
       const savedMultiplier = localStorage.getItem('multiplier');
@@ -196,70 +358,62 @@
       if (savedLikes !== null) likes = parseInt(savedLikes);
       if (savedMultiplier !== null) multiplier = parseInt(savedMultiplier);
       if (savedCost !== null) upgradeCost = parseInt(savedCost);
-      updateDisplay();
+      updateGameDisplay();
     }
-
+    
     function saveGame() {
       localStorage.setItem('likes', likes);
       localStorage.setItem('multiplier', multiplier);
       localStorage.setItem('upgradeCost', upgradeCost);
     }
-
-    function updateDisplay() {
+    
+    function updateGameDisplay() {
       document.getElementById('like-counter').textContent = likes + (likes === 1 ? ' Лайк' : ' Лайков');
       document.getElementById('multiplier').textContent = multiplier;
       document.getElementById('upgrade-cost').textContent = upgradeCost;
     }
-
-    // Обработка клика по зоне игры
+    
     const tapArea = document.getElementById('tap-area');
     tapArea.addEventListener('click', function(e) {
-      // Увеличиваем счетчик с учётом множителя
       likes += multiplier;
-      updateDisplay();
+      updateGameDisplay();
       saveGame();
-
-      // Создаем анимированное сердечко
+      
+      // Создание анимированного сердечка
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.textContent = '❤️';
-
-      // Позиционируем сердечко относительно клика
       const rect = tapArea.getBoundingClientRect();
       const offsetX = e.clientX - rect.left;
       const offsetY = e.clientY - rect.top;
       heart.style.left = (offsetX - 10) + 'px';
       heart.style.top = (offsetY - 10) + 'px';
-
       tapArea.appendChild(heart);
       setTimeout(() => heart.remove(), 1000);
     });
-
-    // Функция улучшения множителя
+    
     function upgradeMultiplier() {
       if (likes >= upgradeCost) {
         likes -= upgradeCost;
         multiplier++;
         upgradeCost = Math.floor(upgradeCost * 1.5);
-        updateDisplay();
+        updateGameDisplay();
         saveGame();
       } else {
         alert('Недостаточно лайков для улучшения!');
       }
     }
-
-    // Сброс игры (для теста)
+    
     function resetGame() {
       if (confirm('Вы уверены, что хотите сбросить прогресс?')) {
         likes = 0;
         multiplier = 1;
         upgradeCost = 10;
-        updateDisplay();
+        updateGameDisplay();
         saveGame();
       }
     }
-
-    // Загрузка сохраненного состояния при загрузке страницы
+    
     loadGame();
   </script>
 </body>
