@@ -1,25 +1,51 @@
+<!-- web/tapfarm.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TapFarm - Hellbrush Guild</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hellbrush TapFarm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Дополнительные стили для игры */
+    body {
+      background-color: var(--background, #121212);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    header, footer {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+    header { margin-bottom: 20px; }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>TapFarm - Автокликер</h1>
-    </header>
-    <main>
-        <div id="game-container">
-            <h2>Лайков: <span id="like-counter">0</span></h2>
-            <button id="tap-button">Клик!</button>
-            <div id="upgrades">
-                <p>Множитель: <span id="multiplier">1</span></p>
-                <button id="upgrade-button">Улучшить (10 лайков)</button>
-            </div>
-        </div>
-    </main>
-    <script src="js/game.js"></script>
+  <header>
+    <h1>Hellbrush TapFarm</h1>
+  </header>
+  <main class="container">
+    <div id="tap-area">Тап!</div>
+    <div id="like-counter">0 Лайков</div>
+    
+    <div class="upgrade">
+      <p><strong>Улучшение: Множитель кликов</strong></p>
+      <p>Текущий множитель: <span id="multiplier">1</span>x</p>
+      <button class="btn" onclick="upgradeMultiplier()">Улучшить (Цена: <span id="upgrade-cost">10</span> лайков)</button>
+    </div>
+    
+    <button class="btn" onclick="resetGame()">Сбросить прогресс</button>
+    <br>
+    <a href="index.html" class="back-btn">Вернуться на сайт</a>
+  </main>
+  <footer>
+    <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
+  </footer>
+  <script src="js/game.js"></script>
 </body>
 </html>

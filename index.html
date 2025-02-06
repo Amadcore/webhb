@@ -1,28 +1,136 @@
+<!-- web/index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Hellbrush Guild</title>
-  <script>
-    function loadTopChannels() {
-      fetch('http://127.0.0.1:5002/top_channels')
-        .then(response => response.json())
-        .then(data => {
-          let html = "";
-          data.forEach(channel => {
-            html += `<div class="channel-card">
-                       <h3>${channel.channel}</h3>
-                       <p>Приглашений: ${channel.invites}</p>
-                     </div>`;
-          });
-          document.getElementById("channel-list").innerHTML = html;
-        });
-    }
-    loadTopChannels();
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hellbrush Guild — Продвижение авторов</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <h1>Топ каналов</h1>
-  <div id="channel-list"></div>
+  <!-- Шапка сайта -->
+  <header>
+    <div class="header-container">
+      <h1>Hellbrush Guild</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#channels">Каналы</a></li>
+          <li><a href="#cabinet">Личный кабинет</a></li>
+          <li><a href="tapfarm.html">Игра</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main class="container" id="home">
+    <section class="hero">
+      <h2>Добро пожаловать в Hellbrush Guild</h2>
+      <p>Платформа для творческого продвижения Telegram‑каналов. Регистрируйте свои каналы и поднимайтесь в рейтинге!</p>
+      <!-- Кнопка для открытия модального окна регистрации -->
+      <a class="btn" href="#" id="openRegistration">Зарегистрировать канал</a>
+    </section>
+
+    <!-- Раздел рейтинга каналов (статичный пример) -->
+    <section id="channels" class="catalog">
+      <h2>Рейтинг каналов</h2>
+      <div class="channel-list">
+        <div class="channel-card">
+          <h3>@ArtChannelOne</h3>
+          <p>Цифровое искусство и 3D моделирование.</p>
+          <div class="rating">Рейтинг: 4.8/5</div>
+        </div>
+        <div class="channel-card">
+          <h3>@CreativeHub</h3>
+          <p>Советы и мастер-классы для авторов.</p>
+          <div class="rating">Рейтинг: 4.5/5</div>
+        </div>
+        <div class="channel-card">
+          <h3>@DesignZone</h3>
+          <p>Новости дизайна, тренды и лучшие проекты.</p>
+          <div class="rating">Рейтинг: 4.7/5</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Личный кабинет -->
+    <section id="cabinet" class="profile">
+      <h2>Личный кабинет</h2>
+      <p>Просматривайте статистику вашего канала и управляйте информацией.</p>
+      <a class="btn" href="https://t.me/Hellbrush_web_bot?start=cabinet" target="_blank">Перейти в кабинет</a>
+    </section>
+  </main>
+
+  <!-- Футер -->
+  <footer>
+    <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
+  </footer>
+
+  <!-- Модальное окно для регистрации канала -->
+  <div id="registrationModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeModal">&times;</span>
+      <h2>Регистрация канала</h2>
+      <p>Ваши данные (имя, профиль) подтягиваются из Telegram.</p>
+      <form id="registrationForm">
+        <input type="text" id="channelInfo" placeholder="Введите ваш канал (например, @YourChannel или ссылка)" required>
+        <button type="submit" class="btn">Зарегистрировать</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Скрипты -->
+  <script>
+    // Получаем данные пользователя из Telegram WebApp API (если доступно)
+    const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+    const currentUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user 
+                        ? tg.initDataUnsafe.user 
+                        : { id: null, first_name: "Unknown", username: "" };
+
+    // Модальное окно
+    const modal = document.getElementById('registrationModal');
+    const openBtn = document.getElementById('openRegistration');
+    const closeBtn = document.getElementById('closeModal');
+    const registrationForm = document.getElementById('registrationForm');
+
+    openBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+      modal.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Обработка отправки формы регистрации:
+    // Вместо использования fetch, генерируем глубокую ссылку с параметром регистрации.
+    registrationForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const channelInfo = document.getElementById('channelInfo').value;
+      const encoded = encodeURIComponent(channelInfo);
+      // Формируем глубокую ссылку: параметр начинается с "reg:" и далее закодированные данные
+      const deepLink = "https://t.me/Hellbrush_web_bot?start=reg:" + encoded;
+      // Перенаправляем пользователя к боту (WebApp закроется, и бот получит параметр)
+      window.location.href = deepLink;
+    });
+
+    // Динамическая смена темы, если WebApp открыт в Telegram
+    (function() {
+      if (tg && tg.colorScheme === 'dark') {
+        document.documentElement.style.setProperty('--background', '#121212');
+        document.documentElement.style.setProperty('--text', '#e0e0e0');
+        document.documentElement.style.setProperty('--accent', '#BB86FC');
+        document.documentElement.style.setProperty('--secondary', '#3700B3');
+      }
+    })();
+  </script>
 </body>
 </html>
