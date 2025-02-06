@@ -72,5 +72,25 @@ function resetGame() {
   }
 }
 
+function sendGameData(userId) {
+  // Например, пользовательский ID можно передавать через URL или хранить в переменной.
+  fetch('http://localhost:5000/update_game', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user_id: userId,  // необходимо задать корректный идентификатор пользователя
+      likes: likes,
+      multiplier: multiplier
+    })
+  })
+  .then(response => response.json())
+  .then(data => console.log('Данные сохранены', data))
+  .catch(error => console.error('Ошибка сохранения данных:', error));
+}
+
+// Вызовите sendGameData(userId) в подходящие моменты (например, после апдейта игры)
+
 // Инициализация загрузки игры
 loadGame();
