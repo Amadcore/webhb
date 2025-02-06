@@ -24,6 +24,7 @@
     <div class="container mx-auto flex flex-col items-center px-4 py-3">
       <div class="w-full flex justify-between items-center mb-3">
         <h1 class="logo text-xl font-bold">Hellbrush Guild</h1>
+        <!-- Здесь можно реализовать проверку регистрации, чтобы показывать ссылку на личный кабинет только зарегистрированным пользователям -->
         <a href="profile.html" class="account-btn flex items-center space-x-2">
           <div class="avatar w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-sm font-bold">?</div>
           <span class="text-sm">Мой профиль</span>
@@ -52,7 +53,7 @@
   <!-- Основной контент -->
   <main class="pt-24">
     <div class="container mx-auto px-4">
-      <!-- Кнопка регистрации канала с дополнительным отступом сверху -->
+      <!-- Кнопка регистрации канала -->
       <div class="mb-6 text-center mt-8" id="registerBtnContainer">
         <button id="openRegisterModal" class="main-btn px-4 py-2 bg-green-500 rounded hover:bg-green-600 transition">
           Зарегистрировать канал
@@ -66,10 +67,10 @@
         <div class="hot-channels mb-6">
           <h3 class="text-xl font-semibold mb-3">🔥 Горячее</h3>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <!-- Карточка 1: Art Director and VisDev -->
+            <!-- Пример карточки -->
             <div class="channel-card hot" data-category="design">
               <div class="flex items-center mb-2">
-                <img class="channel-logo w-12 h-12 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/WUdBYnf424_K75ne0ozVUmS6sbKojM_WfVGYlGmWPg5bcKxCRRexhzB_tkzd0k0c6vni7wrJ5PKs_-8t49l3ZVhUqHgCTT9wM-DH8dDn3uYFAdGEWeJ8aZWS3fdk5chB_shxm7laobTL8tCEnqJqpfWTcO2pPtjMuiFtjs0ddWv9nty8f00huO9Brw0jUBrLnKuYTB3P8Ccbp1N9Wsjl1Q6sVOJet_I-iNHGxf8GIY6JwvvK4JOl9RXG3IlZYFJ6vbTv24lDxeYUPftvTMlIVVNDaz6StT6qqhKZuDy4N3c9We7J-OFfpUrgk9uxIEHRuBNa3RsvZq0AIe0exerNRQ.jpg" alt="Art Director and VisDev">
+                <img class="channel-logo w-12 h-12 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/..." alt="Art Director and VisDev">
                 <div class="ml-3">
                   <h4 class="channel-title font-semibold">HELLBRUSH</h4>
                   <p class="channel-username text-sm text-gray-300">@hellbrushart</p>
@@ -85,54 +86,17 @@
                 </a>
               </div>
             </div>
-            <!-- Карточка 2: Мой менторский чат -->
-            <div class="channel-card hot" data-category="cg">
-              <div class="flex items-center mb-2">
-                <img class="channel-logo w-12 h-12 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/WUdBYnf424_K75ne0ozVUmS6sbKojM_WfVGYlGmWPg5bcKxCRRexhzB_tkzd0k0c6vni7wrJ5PKs_-8t49l3ZVhUqHgCTT9wM-DH8dDn3uYFAdGEWeJ8aZWS3fdk5chB_shxm7laobTL8tCEnqJqpfWTcO2pPtjMuiFtjs0ddWv9nty8f00huO9Brw0jUBrLnKuYTB3P8Ccbp1N9Wsjl1Q6sVOJet_I-iNHGxf8GIY6JwvvK4JOl9RXG3IlZYFJ6vbTv24lDxeYUPftvTMlIVVNDaz6StT6qqhKZuDy4N3c9We7J-OFfpUrgk9uxIEHRuBNa3RsvZq0AIe0exerNRQ.jpg" alt="Мой менторский чат">
-                <div class="ml-3">
-                  <h4 class="channel-title font-semibold">HELLBRUSH</h4>
-                  <p class="channel-username text-sm text-gray-300">@hellbrushart</p>
-                </div>
-              </div>
-              <p class="channel-desc text-sm text-gray-400 mb-2">
-                Art Director and VisDe. Делаю крутую графику.
-              </p>
-              <div class="flex justify-between items-center">
-                <span class="channel-rating text-lg font-bold">5.0</span>
-                <a href="https://t.me/hellbrush_art/" class="channel-btn bg-blue-500 px-3 py-1 rounded-full text-xs hover:bg-blue-600 transition">
-                  Перейти
-                </a>
-              </div>
-            </div>
-            <!-- Карточка 3: Основатель CG движения -->
-            <div class="channel-card hot" data-category="cg">
-              <div class="flex items-center mb-2">
-                <img class="channel-logo w-12 h-12 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/WUdBYnf424_K75ne0ozVUmS6sbKojM_WfVGYlGmWPg5bcKxCRRexhzB_tkzd0k0c6vni7wrJ5PKs_-8t49l3ZVhUqHgCTT9wM-DH8dDn3uYFAdGEWeJ8aZWS3fdk5chB_shxm7laobTL8tCEnqJqpfWTcO2pPtjMuiFtjs0ddWv9nty8f00huO9Brw0jUBrLnKuYTB3P8Ccbp1N9Wsjl1Q6sVOJet_I-iNHGxf8GIY6JwvvK4JOl9RXG3IlZYFJ6vbTv24lDxeYUPftvTMlIVVNDaz6StT6qqhKZuDy4N3c9We7J-OFfpUrgk9uxIEHRuBNa3RsvZq0AIe0exerNRQ.jpg" alt="Основатель CG движения">
-                <div class="ml-3">
-                  <h4 class="channel-title font-semibold">HELLBRUSH</h4>
-                  <p class="channel-username text-sm text-gray-300">@hellbrushart</p>
-                </div>
-              </div>
-              <p class="channel-desc text-sm text-gray-400 mb-2">
-                Art Director and VisDe. Делаю крутую графику.
-              </p>
-              <div class="flex justify-between items-center">
-                <span class="channel-rating text-lg font-bold">5.0</span>
-                <a href="https://t.me/hellbrush_art/" class="channel-btn bg-blue-500 px-3 py-1 rounded-full text-xs hover:bg-blue-600 transition">
-                  Перейти
-                </a>
-              </div>
-            </div>
+            <!-- Здесь можно добавить еще карточки -->
           </div>
         </div>
-        <!-- Секция "Все каналы" (пример дублирования карточек) -->
+        <!-- Секция "Все каналы" (пример) -->
         <div class="all-channels">
           <h3 class="text-xl font-semibold mb-3">Все каналы</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- Пример карточки (повтор первой карточки) -->
             <div class="channel-card" data-category="design">
               <div class="flex items-center mb-2">
-                <img class="channel-logo w-12 h-12 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/WUdBYnf424_K75ne0ozVUmS6sbKojM_WfVGYlGmWPg5bcKxCRRexhzB_tkzd0k0c6vni7wrJ5PKs_-8t49l3ZVhUqHgCTT9wM-DH8dDn3uYFAdGEWeJ8aZWS3fdk5chB_shxm7laobTL8tCEnqJqpfWTcO2pPtjMuiFtjs0ddWv9nty8f00huO9Brw0jUBrLnKuYTB3P8Ccbp1N9Wsjl1Q6sVOJet_I-iNHGxf8GIY6JwvvK4JOl9RXG3IlZYFJ6vbTv24lDxeYUPftvTMlIVVNDaz6StT6qqhKZuDy4N3c9We7J-OFfpUrgk9uxIEHRuBNa3RsvZq0AIe0exerNRQ.jpg" alt="Art Director and VisDev">
+                <img class="channel-logo w-12 h-12 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/..." alt="Art Director and VisDev">
                 <div class="ml-3">
                   <h4 class="channel-title font-semibold">HELLBRUSH</h4>
                   <p class="channel-username text-sm text-gray-300">@hellbrushart</p>
@@ -148,25 +112,7 @@
                 </a>
               </div>
             </div>
-            <!-- Пример карточки (повтор второй карточки) -->
-            <div class="channel-card" data-category="cg">
-              <div class="flex items-center mb-2">
-                <img class="channel-logo w-12 h-12 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/WUdBYnf424_K75ne0ozVUmS6sbKojM_WfVGYlGmWPg5bcKxCRRexhzB_tkzd0k0c6vni7wrJ5PKs_-8t49l3ZVhUqHgCTT9wM-DH8dDn3uYFAdGEWeJ8aZWS3fdk5chB_shxm7laobTL8tCEnqJqpfWTcO2pPtjMuiFtjs0ddWv9nty8f00huO9Brw0jUBrLnKuYTB3P8Ccbp1N9Wsjl1Q6sVOJet_I-iNHGxf8GIY6JwvvK4JOl9RXG3IlZYFJ6vbTv24lDxeYUPftvTMlIVVNDaz6StT6qqhKZuDy4N3c9We7J-OFfpUrgk9uxIEHRuBNa3RsvZq0AIe0exerNRQ.jpg" alt="Мой менторский чат">
-                <div class="ml-3">
-                  <h4 class="channel-title font-semibold">HELLBRUSH</h4>
-                  <p class="channel-username text-sm text-gray-300">@hellbrushart</p>
-                </div>
-              </div>
-              <p class="channel-desc text-sm text-gray-400 mb-2">
-                Art Director and VisDe. Делаю крутую графику.
-              </p>
-              <div class="flex justify-between items-center">
-                <span class="channel-rating text-lg font-bold">5.0</span>
-                <a href="https://t.me/hellbrush_art/" class="channel-btn bg-blue-500 px-3 py-1 rounded-full text-xs hover:bg-blue-600 transition">
-                  Перейти
-                </a>
-              </div>
-            </div>
+            <!-- Еще одна карточка -->
           </div>
         </div>
       </div>
@@ -180,18 +126,18 @@
       <h2 class="text-xl font-bold mb-4 text-center">Зарегистрировать канал</h2>
       <form id="modalRegisterForm">
         <label class="block mb-2">
-          Название канала:
-          <input type="text" id="modalChannelName" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Например, Art Director and VisDev" required>
+          Введите имя канала (например, @вашканал):
+          <input type="text" id="modalChannelName" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="@вашканал" required>
         </label>
+        <!-- Дополнительно можно оставить поле для описания, если требуется -->
         <label class="block mb-2">
-          Описание канала:
-          <textarea id="modalChannelDesc" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Делаю крутую графику" required></textarea>
+          Дополнительное описание (необязательно):
+          <textarea id="modalChannelDesc" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="Опционально, описание канала"></textarea>
         </label>
         <button type="submit" class="main-btn w-full mt-4 px-4 py-2 bg-blue-500 rounded hover:bg-blue-600 transition">
-          Сгенерировать ссылку
+          Зарегистрировать
         </button>
       </form>
-      <div id="modalDeepLinkOutput" class="mt-4 text-center"></div>
     </div>
   </div>
 
@@ -204,10 +150,11 @@
 
   <!-- Скрипты -->
   <script>
-    // Обработчики открытия/закрытия модального окна
+    // Открытие/закрытие модального окна регистрации
     const openModalBtn = document.getElementById('openRegisterModal');
     const registerModal = document.getElementById('registerModal');
     const closeModalBtn = document.getElementById('closeModal');
+    const registerBtnContainer = document.getElementById('registerBtnContainer');
 
     openModalBtn.addEventListener('click', () => {
       registerModal.classList.remove('hidden');
@@ -224,43 +171,29 @@
       return btoa(unescape(encodeURIComponent(data)));
     }
 
-    // Обработка отправки формы в модальном окне
+    // Обработка отправки формы регистрации в модальном окне
     document.getElementById('modalRegisterForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const channelName = document.getElementById('modalChannelName').value.trim();
-      const channelDesc = document.getElementById('modalChannelDesc').value.trim();
-
-      if (!channelName || !channelDesc) {
-        alert('Пожалуйста, заполните все поля.');
+      const channelDesc = document.getElementById('modalChannelDesc').value.trim() || "Нет описания";
+      if (!channelName) {
+        alert('Пожалуйста, введите имя канала.');
         return;
       }
 
-      // Собираем данные для передачи (можно использовать и JSON)
-      const channelData = `Название: ${channelName}\nОписание: ${channelDesc}`;
+      // Формируем данные для передачи; мы используем только имя канала,
+      // так как имя пользователя и прочее бот получает из профиля Telegram.
+      const channelData = `Канал: ${channelName}\nОписание: ${channelDesc}`;
       const encodedData = encodeData(channelData);
-
-      // Формируем deep‑link параметр с префиксом "reg:"
       const deepLinkParam = `reg:${encodedData}`;
-
-      // Формируем ссылку для Telegram‑бота
       const botUsername = "Hellbrush_web_bot";
       const deepLinkURL = `https://t.me/${botUsername}?start=${encodeURIComponent(deepLinkParam)}`;
 
-      // Выводим сгенерированную ссылку в модальном окне
-      const outputDiv = document.getElementById('modalDeepLinkOutput');
-      outputDiv.innerHTML = `<p>Нажмите на ссылку, чтобы зарегистрировать канал:</p>
-                             <a href="${deepLinkURL}" class="text-blue-400 underline">${deepLinkURL}</a>`;
+      // Вместо показа ссылки, автоматически перенаправляем пользователя в Telegram-бот
+      window.location.href = deepLinkURL;
 
-      // Скрываем кнопку регистрации на главной странице после успешной генерации ссылки
-      document.getElementById('registerBtnContainer').style.display = 'none';
-    });
-
-    // Закрытие модального окна при клике вне его содержимого
-    window.addEventListener('click', function(e) {
-      if (e.target === registerModal) {
-        registerModal.classList.add('hidden');
-        registerModal.classList.remove('flex');
-      }
+      // Скрываем кнопку регистрации на главной странице
+      registerBtnContainer.style.display = 'none';
     });
 
     // Простейший фильтр для карточек каналов
