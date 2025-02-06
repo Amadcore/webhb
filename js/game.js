@@ -1,4 +1,4 @@
-// Переменные игры
+// Пример простой игры TapFarm
 let likes = 0;
 let multiplier = 1;
 let upgradeCost = 10;

@@ -1,55 +1,19 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hellbrush TapFarm</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    /* Дополнительные стили для страницы игры */
-    body {
-      background-color: var(--background, #121212);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      min-height: 100vh;
-    }
-    header, footer {
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-    }
-    header { margin-bottom: 20px; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Hellbrush TapFarm</h1>
-  </header>
-  <main class="container">
-    <!-- Игровой интерфейс -->
-    <div id="tap-area">Тап!</div>
-    <div id="like-counter">0 Лайков</div>
-    
-    <!-- Блок прокачки -->
-    <div class="upgrade">
-      <p><strong>Улучшение: Множитель лайков</strong></p>
-      <p>Текущий множитель: <span id="multiplier">1</span>x</p>
-      <button class="btn" onclick="upgradeMultiplier()">Улучшить (Цена: <span id="upgrade-cost">10</span> лайков)</button>
-    </div>
-    
-    <!-- Кнопка сброса прогресса -->
-    <button class="btn" onclick="resetGame()">Сбросить прогресс</button>
-    <!-- Кнопка для возврата на сайт -->
-    <br>
-    <a href="index.html" class="back-btn">Вернуться на сайт</a>
-  </main>
-  <footer>
-    <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
-  </footer>
-  
-  <script src="js/game.js"></script>
-</body>
-</html>
+from telegram.ext import Application, CommandHandler
+from Bot.config import BOT_TOKEN
+from Bot.commands import start, stats, add_invite, remove_user
+from Bot.database import init_db
+
+def main():
+    init_db()  # Инициализируем базу данных (если таблицы не созданы, они будут созданы)
+    app = Application.builder().token(BOT_TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("stats", stats))
+    app.add_handler(CommandHandler("add_invite", add_invite))
+    app.add_handler(CommandHandler("remove_user", remove_user))
+
+    print("Бот запущен! Ссылка: https://t.me/Hellbrush_web_bot")
+    app.run_polling()
+
+if __name__ == '__main__':
+    main()
