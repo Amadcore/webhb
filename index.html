@@ -7,9 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* Стили модального окна */
+    /* Стили модального окна для регистрации */
     .modal {
-      display: none;
+      display: none; /* Скрыто по умолчанию */
       position: fixed;
       z-index: 2000;
       left: 0;
@@ -29,7 +29,8 @@
       border-radius: 10px;
       color: var(--text, #e0e0e0);
     }
-    .modal-content input, .modal-content button {
+    .modal-content input,
+    .modal-content button {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
@@ -54,7 +55,7 @@
   </style>
 </head>
 <body>
-  <!-- Шапка и основное меню (оставляем как есть) -->
+  <!-- Шапка -->
   <header>
     <div class="header-container">
       <h1>Hellbrush Guild</h1>
@@ -79,11 +80,42 @@
       <a class="btn" href="#" id="openRegistration">Зарегистрировать канал</a>
     </section>
 
-    <!-- Другие разделы (например, рейтинг каналов, личный кабинет) -->
-    <!-- ... -->
+    <!-- Раздел рейтинга каналов (пример статичных данных) -->
+    <section id="channels" class="catalog">
+      <h2>Рейтинг каналов</h2>
+      <div class="channel-list">
+        <div class="channel-card">
+          <h3>@ArtChannelOne</h3>
+          <p>Канал о цифровом искусстве и 3D моделировании.</p>
+          <div class="rating">Рейтинг: 4.8/5</div>
+        </div>
+        <div class="channel-card">
+          <h3>@CreativeHub</h3>
+          <p>Площадка для талантливых авторов, советы и мастер-классы.</p>
+          <div class="rating">Рейтинг: 4.5/5</div>
+        </div>
+        <div class="channel-card">
+          <h3>@DesignZone</h3>
+          <p>Новости дизайна, тренды и лучшие проекты.</p>
+          <div class="rating">Рейтинг: 4.7/5</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Личный кабинет -->
+    <section id="cabinet" class="profile">
+      <h2>Личный кабинет</h2>
+      <p>Здесь вы можете просмотреть статистику вашего канала и управлять информацией.</p>
+      <a class="btn" href="https://t.me/Hellbrush_web_bot?start=cabinet" target="_blank">Перейти в кабинет</a>
+    </section>
   </main>
 
-  <!-- Модальное окно для регистрации -->
+  <!-- Футер -->
+  <footer>
+    <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
+  </footer>
+
+  <!-- Модальное окно для регистрации канала -->
   <div id="registrationModal" class="modal">
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
@@ -92,52 +124,53 @@
         <input type="text" id="channelName" placeholder="Название канала" required>
         <input type="url" id="channelLink" placeholder="Ссылка на канал" required>
         <input type="text" id="channelDescription" placeholder="Описание канала" required>
-        <button type="submit">Зарегистрировать</button>
+        <button type="submit" class="btn">Зарегистрировать</button>
       </form>
     </div>
   </div>
 
-  <!-- Футер -->
-  <footer>
-    <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
-  </footer>
-
-  <!-- Скрипт для модального окна и отправки данных формы -->
+  <!-- Скрипты -->
   <script>
-    // Получаем элементы
+    // Получаем данные пользователя из Telegram WebApp API
+    // Предполагается, что Telegram WebApp API уже подключён и доступен через window.Telegram.WebApp
+    const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+    const currentUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : { id: null };
+
+    // Модальное окно
     const modal = document.getElementById('registrationModal');
     const openBtn = document.getElementById('openRegistration');
     const closeBtn = document.getElementById('closeModal');
     const registrationForm = document.getElementById('registrationForm');
 
-    // Открытие модального окна
     openBtn.addEventListener('click', function(event) {
       event.preventDefault();
       modal.style.display = 'block';
     });
 
-    // Закрытие модального окна по клику на крестик
     closeBtn.addEventListener('click', function() {
       modal.style.display = 'none';
     });
 
-    // Закрытие окна при клике вне его
     window.addEventListener('click', function(event) {
       if (event.target == modal) {
         modal.style.display = 'none';
       }
     });
 
-    // Обработка отправки формы
+    // Обработка отправки формы регистрации
     registrationForm.addEventListener('submit', function(event) {
       event.preventDefault();
+      
       // Собираем данные формы
       const channelData = {
         channelName: document.getElementById('channelName').value,
         channelLink: document.getElementById('channelLink').value,
-        channelDescription: document.getElementById('channelDescription').value
+        channelDescription: document.getElementById('channelDescription').value,
+        user_id: currentUser.id  // передаем user_id из Telegram WebApp API
       };
-      // Отправка данных через fetch к API регистрации (пример, URL и метод настраиваются вами)
+
+      // Отправка данных на API для регистрации канала
+      // Замените URL ниже на ваш реальный API-эндпоинт
       fetch('https://your-api-endpoint/register_channel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -147,13 +180,23 @@
       .then(data => {
         alert('Канал успешно зарегистрирован!');
         modal.style.display = 'none';
-        // Дополнительно: обновите данные личного кабинета на WebApp, если нужно
+        // Здесь можно обновить данные личного кабинета, если требуется
       })
       .catch(error => {
         console.error('Ошибка регистрации:', error);
         alert('Ошибка регистрации. Попробуйте еще раз.');
       });
     });
+
+    // Динамическая смена темы, если WebApp открыт в Telegram
+    (function() {
+      if (tg && tg.colorScheme === 'dark') {
+        document.documentElement.style.setProperty('--background', '#121212');
+        document.documentElement.style.setProperty('--text', '#e0e0e0');
+        document.documentElement.style.setProperty('--accent', '#BB86FC');
+        document.documentElement.style.setProperty('--secondary', '#3700B3');
+      }
+    })();
   </script>
 </body>
 </html>
