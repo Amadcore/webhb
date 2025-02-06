@@ -9,8 +9,6 @@ function updateGameDisplay() {
   document.getElementById('multiplier').textContent = multiplier;
   document.getElementById('upgrade-cost').textContent = upgradeCost;
 }
-
-// Сохранение прогресса в LocalStorage
 function saveGame() {
   localStorage.setItem('tapfarm_likes', likes);
   localStorage.setItem('tapfarm_multiplier', multiplier);
@@ -89,7 +87,22 @@ function sendGameData(userId) {
   .then(data => console.log('Данные сохранены', data))
   .catch(error => console.error('Ошибка сохранения данных:', error));
 }
-
+function sendGameData(userId) {
+  fetch('http://localhost:5002/update_game', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      points: likes,         // здесь "likes" или "points" – игровой счет
+      multiplier: multiplier
+    })
+  })
+  .then(response => response.json())
+  .then(data => console.log('Game data updated', data))
+  .catch(error => console.error('Error updating game data:', error));
+}
 // Вызовите sendGameData(userId) в подходящие моменты (например, после апдейта игры)
 
 // Инициализация загрузки игры
