@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Hellbrush Guild – Редактировать профиль</title>
+  <!-- Подключение Tailwind CSS через CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Подключение собственного файла стилей -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Шапка -->
+  <header class="header fixed top-0 left-0 w-full z-50">
+    <div class="container mx-auto flex justify-between items-center px-4 py-3">
+      <h1 class="logo text-xl font-bold">Hellbrush Guild</h1>
+      <div class="flex items-center space-x-4">
+        <a href="profile.html" class="nav-link text-sm">Мой профиль</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Основной контент -->
+  <main class="pt-20">
+    <section class="edit-profile-section py-8">
+      <div class="container mx-auto px-4">
+        <h2 class="section-title text-2xl font-bold mb-6 text-center">Редактировать профиль</h2>
+        <form class="bg-gray-800 rounded-xl p-6 shadow-md max-w-lg mx-auto" id="editProfileForm">
+          <!-- Изображение профиля -->
+          <div class="flex flex-col items-center mb-6">
+            <img id="profileImgPreview" class="w-32 h-32 rounded-full object-cover mb-3" src="https://cdn4.cdn-telegram.org/file/WUdBYnf424_K75ne0ozVUmS6sbKojM_WfVGYlGmWPg5bcKxCRRexhzB_tkzd0k0c6vni7wrJ5PKs_-8t49l3ZVhUqHgCTT9wM-DH8dDn3uYFAdGEWeJ8aZWS3fdk5chB_shxm7laobTL8tCEnqJqpfWTcO2pPtjMuiFtjs0ddWv9nty8f00huO9Brw0jUBrLnKuYTB3P8Ccbp1N9Wsjl1Q6sVOJet_I-iNHGxf8GIY6JwvvK4JOl9RXG3IlZYFJ6vbTv24lDxeYUPftvTMlIVVNDaz6StT6qqhKZuDy4N3c9We7J-OFfpUrgk9uxIEHRuBNa3RsvZq0AIe0exerNRQ.jpg" alt="Профиль">
+            <label for="profileImg" class="cursor-pointer text-blue-400 hover:underline text-sm">Загрузить новое изображение</label>
+            <input type="file" id="profileImg" class="hidden" accept="image/*">
+          </div>
+          <!-- Имя -->
+          <div class="mb-4">
+            <label for="profileName" class="block mb-1 text-sm">Имя</label>
+            <input type="text" id="profileName" class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500" value="HELLBRUSH">
+          </div>
+          <!-- Описание -->
+          <div class="mb-4">
+            <label for="profileDesc" class="block mb-1 text-sm">Описание</label>
+            <textarea id="profileDesc" rows="3" class="w-full px-3 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500">Art Director and VisDev&#10;Делаю крутую графику</textarea>
+          </div>
+          <!-- Дополнительные параметры (например, рейтинг, бонусы, ачивки) -->
+          <div class="mb-6 grid grid-cols-3 gap-4 text-center">
+            <div>
+              <label class="block text-sm mb-1">Рейтинг</label>
+              <input type="number" id="profileRating" class="w-full px-2 py-1 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-center" value="5.0" step="0.1" min="0" max="5">
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Бонусов</label>
+              <input type="number" id="profileBonuses" class="w-full px-2 py-1 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-center" value="10" min="0">
+            </div>
+            <div>
+              <label class="block text-sm mb-1">Ачивки</label>
+              <input type="number" id="profileAchievements" class="w-full px-2 py-1 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:border-blue-500 text-center" value="3" min="0">
+            </div>
+          </div>
+          <!-- Кнопка сохранения -->
+          <button type="submit" class="main-btn w-full">Сохранить изменения</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Футер -->
+  <footer class="footer py-4">
+    <div class="container mx-auto px-4 text-center text-gray-500 text-xs">
+      &copy; 2025 Hellbrush Guild. Все права защищены.
+    </div>
+  </footer>
+
+  <!-- Скрипт для предпросмотра изображения -->
+  <script>
+    document.getElementById('profileImg').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('profileImgPreview').src = evt.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Пример обработки отправки формы (можно заменить на вызов API)
+    document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Изменения сохранены!');
+      // Здесь можно собрать данные формы и отправить их на сервер
+    });
+  </script>
+</body>
+</html>

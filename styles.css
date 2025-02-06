@@ -1,0 +1,142 @@
+/* Глобальные стили */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #111827;
+  color: #fff;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.container {
+  max-width: 1200px;
+}
+
+/* Шапка */
+.header {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease;
+}
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.nav-link {
+  font-size: 0.875rem;
+  transition: color 0.3s;
+}
+.nav-link:hover {
+  color: #2563eb;
+}
+.account-btn {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.account-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Секция рейтинга */
+.ratings-section {
+  padding: 1.5rem 0;
+}
+
+/* Заголовки секций */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Карточки каналов */
+.channel-card {
+  background: #1f2937;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.channel-card:hover {
+  transform: translateY(-4px);
+}
+.channel-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  /* Если изображение не подгружается, можно использовать цветной фон */
+  background: #333;
+}
+.channel-title {
+  font-size: 1rem;
+}
+.channel-username {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+.channel-desc {
+  font-size: 0.75rem;
+  color: #d1d5db;
+}
+.channel-rating {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.channel-btn {
+  background-color: #2563eb;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  transition: background-color 0.3s;
+}
+.channel-btn:hover {
+  background-color: #1d4ed8;
+}
+
+/* Выделение горячих каналов */
+.hot {
+  border: 2px solid #ff4500;
+}
+
+/* Футер */
+.footer {
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Анимации (при необходимости можно добавить дополнительные эффекты) */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Дополнительные стили для страницы профиля */
+.profile-section {
+  background: #111827;
+  padding: 2rem 0;
+}
+
+.profile-card {
+  background: rgba(31, 41, 55, 0.9);
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.profile-card img {
+  /* Обеспечиваем корректное отображение изображения */
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 9999px;
+}
