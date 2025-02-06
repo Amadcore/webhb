@@ -2,11 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hellbrush Guild</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hellbrush Guild - Telegram WebApp</title>
   <!-- Подключение Tailwind CSS через CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Можно добавить кастомные настройки для Tailwind в теге <script> -->
   <style>
     /* Дополнительные стили, если нужно */
     body {
@@ -16,105 +15,87 @@
 </head>
 <body class="bg-gray-900 text-white">
   <!-- Шапка сайта -->
-  <header class="bg-gray-800 py-4 shadow">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Hellbrush Guild</h1>
-      <nav>
-        <ul class="flex space-x-4">
-          <li><a href="#about" class="hover:text-blue-400">О проекте</a></li>
-          <li><a href="#channels" class="hover:text-blue-400">Каналы</a></li>
-          <li><a href="#game" class="hover:text-blue-400">Игра</a></li>
-          <li><a href="#contact" class="hover:text-blue-400">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header class="bg-gray-800 px-4 py-3 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Hellbrush Guild</h1>
+    <nav class="flex space-x-3">
+      <a href="#home" class="hover:text-blue-400">Главная</a>
+      <a href="#profile" class="hover:text-blue-400">Профиль</a>
+      <a href="#game" class="hover:text-blue-400">Игра</a>
+    </nav>
   </header>
 
-  <!-- Главный баннер -->
-  <section class="bg-cover bg-center" style="background-image: url('https://source.unsplash.com/random/1600x900?technology');">
-    <div class="bg-gray-900 bg-opacity-50">
-      <div class="container mx-auto px-4 py-20 text-center">
-        <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Добро пожаловать в Hellbrush Guild</h2>
-        <p class="text-xl md:text-2xl mb-8">Объединяем креатив и технологии для создания уникальных проектов.</p>
-        <a href="#about" class="px-8 py-4 bg-blue-500 hover:bg-blue-600 rounded-full text-lg font-semibold">Узнать больше</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- О проекте -->
-  <section id="about" class="py-16">
-    <div class="container mx-auto px-4">
-      <h3 class="text-3xl font-bold mb-6 text-center">О проекте</h3>
-      <p class="max-w-2xl mx-auto text-center text-lg">
-        Hellbrush Guild — это сообщество, объединяющее творческих людей, разработчиков и художников. Мы предлагаем современный подход к интеграции Telegram‑бота, веб-приложения и админ‑панели для удобного управления и взаимодействия.
-      </p>
-    </div>
-  </section>
-
-  <!-- Каналы/Партнеры -->
-  <section id="channels" class="bg-gray-800 py-16">
-    <div class="container mx-auto px-4">
-      <h3 class="text-3xl font-bold mb-8 text-center">Наши Каналы</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Пример карточки канала -->
-        <div class="bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Канал 1</h4>
-          <p class="mb-4">Описание канала, его тематика и преимущества подписки.</p>
-          <a href="https://t.me/Hellbrush_web_bot" class="text-blue-400 hover:underline">Перейти в Telegram</a>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Канал 2</h4>
-          <p class="mb-4">Описание канала, его тематика и преимущества подписки.</p>
-          <a href="https://t.me/Hellbrush_web_bot" class="text-blue-400 hover:underline">Перейти в Telegram</a>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Канал 3</h4>
-          <p class="mb-4">Описание канала, его тематика и преимущества подписки.</p>
-          <a href="https://t.me/Hellbrush_web_bot" class="text-blue-400 hover:underline">Перейти в Telegram</a>
+  <!-- Основной контент -->
+  <main class="p-4">
+    <!-- Баннер -->
+    <section id="home" class="mb-6">
+      <div class="bg-cover bg-center rounded-lg h-48" style="background-image: url('https://source.unsplash.com/random/800x600?tech');">
+        <div class="bg-gray-900 bg-opacity-50 h-full flex flex-col justify-center items-center">
+          <h2 class="text-3xl font-bold">Добро пожаловать!</h2>
+          <p class="mt-2 text-lg">Hellbrush Guild для Telegram</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Мини-игра -->
-  <section id="game" class="py-16">
-    <div class="container mx-auto px-4">
-      <h3 class="text-3xl font-bold mb-6 text-center">Мини-игра TapFarm</h3>
-      <p class="max-w-2xl mx-auto text-center text-lg mb-8">
-        Нажимайте на кнопку и улучшайте свои навыки в увлекательном кликере. Рекорды и достижения ждут вас!
-      </p>
-      <div class="text-center">
-        <button id="clickerBtn" class="px-8 py-4 bg-green-500 hover:bg-green-600 rounded-full text-lg font-semibold">Кликни меня!</button>
+    <!-- Информация пользователя -->
+    <section id="profile" class="mb-6">
+      <h3 class="text-2xl font-semibold mb-3">Ваш профиль</h3>
+      <div class="bg-gray-800 p-4 rounded-lg">
+        <!-- Данные пользователя будут подтянуты через Telegram WebApp API -->
+        <p>ID: <span id="userId">123456</span></p>
+        <p>Имя: <span id="userName">User Name</span></p>
+        <p>Username: <span id="userUsername">@username</span></p>
+      </div>
+    </section>
+
+    <!-- Мини-игра TapFarm -->
+    <section id="game" class="mb-6">
+      <h3 class="text-2xl font-semibold mb-3">Мини-игра TapFarm</h3>
+      <div class="bg-gray-800 p-4 rounded-lg text-center">
+        <button id="clickerBtn" class="bg-green-500 px-4 py-2 rounded hover:bg-green-600">Кликни меня!</button>
         <p class="mt-4 text-xl">Счёт: <span id="score">0</span></p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Контакты -->
-  <section id="contact" class="bg-gray-800 py-16">
-    <div class="container mx-auto px-4">
-      <h3 class="text-3xl font-bold mb-6 text-center">Контакты</h3>
-      <p class="max-w-2xl mx-auto text-center text-lg">
-        Если у вас есть вопросы или предложения, пишите нам на <a href="mailto:hello@hellbrushguild.com" class="text-blue-400 hover:underline">hello@hellbrushguild.com</a>
-      </p>
-    </div>
-  </section>
+    <!-- Кнопка закрытия WebApp (если требуется) -->
+    <section class="mb-6">
+      <button id="closeBtn" class="w-full bg-red-500 px-4 py-3 rounded hover:bg-red-600">Закрыть приложение</button>
+    </section>
+  </main>
 
-  <!-- Футер -->
-  <footer class="bg-gray-800 py-4">
-    <div class="container mx-auto px-4 text-center text-gray-400">
-      &copy; 2025 Hellbrush Guild. Все права защищены.
-    </div>
-  </footer>
-
-  <!-- Пример простого скрипта для мини-игры -->
+  <!-- Скрипты -->
   <script>
-    const btn = document.getElementById('clickerBtn');
-    const scoreEl = document.getElementById('score');
-    let score = 0;
-    btn.addEventListener('click', () => {
-      score++;
-      scoreEl.textContent = score;
+    // Ожидание загрузки DOM
+    window.addEventListener('DOMContentLoaded', () => {
+      // Если приложение запущено внутри Telegram, используем API
+      if (window.Telegram && window.Telegram.WebApp) {
+        // Пример установки текста для главной кнопки Telegram WebApp
+        Telegram.WebApp.MainButton.setText("Начать");
+        Telegram.WebApp.MainButton.show();
+
+        // Получение данных пользователя (если доступны)
+        const user = Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user;
+        if (user) {
+          document.getElementById('userId').textContent = user.id || 'неизвестно';
+          document.getElementById('userName').textContent = user.first_name || 'неизвестно';
+          document.getElementById('userUsername').textContent = user.username ? '@' + user.username : 'не указано';
+        }
+      }
+
+      // Логика мини-игры (кликер)
+      let score = 0;
+      document.getElementById('clickerBtn').addEventListener('click', () => {
+        score++;
+        document.getElementById('score').textContent = score;
+      });
+
+      // Обработка кнопки "Закрыть приложение"
+      document.getElementById('closeBtn').addEventListener('click', () => {
+        if (window.Telegram && window.Telegram.WebApp) {
+          Telegram.WebApp.close();
+        } else {
+          alert("Telegram WebApp API недоступен.");
+        }
+      });
     });
   </script>
 </body>
