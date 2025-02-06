@@ -1,19 +1,25 @@
-from telegram.ext import Application, CommandHandler
-from Bot.config import BOT_TOKEN
-from Bot.commands import start, stats, add_invite, remove_user
-from Bot.database import init_db
-
-def main():
-    init_db()  # Инициализируем базу данных (если таблицы не созданы, они будут созданы)
-    app = Application.builder().token(BOT_TOKEN).build()
-
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("stats", stats))
-    app.add_handler(CommandHandler("add_invite", add_invite))
-    app.add_handler(CommandHandler("remove_user", remove_user))
-
-    print("Бот запущен! Ссылка: https://t.me/Hellbrush_web_bot")
-    app.run_polling()
-
-if __name__ == '__main__':
-    main()
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TapFarm - Hellbrush Guild</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>TapFarm - Автокликер</h1>
+    </header>
+    <main>
+        <div id="game-container">
+            <h2>Лайков: <span id="like-counter">0</span></h2>
+            <button id="tap-button">Клик!</button>
+            <div id="upgrades">
+                <p>Множитель: <span id="multiplier">1</span></p>
+                <button id="upgrade-button">Улучшить (10 лайков)</button>
+            </div>
+        </div>
+    </main>
+    <script src="js/game.js"></script>
+</body>
+</html>
