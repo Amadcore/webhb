@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hellbrush Guild – Регистрация канала</title>
+  <!-- Подключение Tailwind CSS через CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+  <header class="header p-4">
+    <h1 class="text-2xl font-bold">Hellbrush Guild</h1>
+  </header>
+
+  <main class="p-4">
+    <h2 class="text-xl font-semibold mb-4">Зарегистрировать канал</h2>
+    <p class="mb-4">Введите данные о канале, чтобы зарегистрировать его через Telegram‑бот:</p>
+    <!-- Форма регистрации -->
+    <form id="registerForm" class="max-w-md mx-auto">
+      <label class="block mb-2">
+        Название канала:
+        <input type="text" id="channelName" class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Например, Art Director and VisDev" required>
+      </label>
+      <label class="block mb-2">
+        Описание канала:
+        <textarea id="channelDesc" class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Делаю крутую графику" required></textarea>
+      </label>
+      <button type="submit" class="main-btn px-4 py-2 bg-blue-500 rounded hover:bg-blue-600">Сгенерировать ссылку</button>
+    </form>
+    <div id="deepLinkOutput" class="mt-6 text-center"></div>
+  </main>
+</body>
+<script>
+  // Функция для кодирования строки в base64
+  function encodeData(data) {
+    return btoa(unescape(encodeURIComponent(data)));
+  }
+
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const channelName = document.getElementById('channelName').value.trim();
+    const channelDesc = document.getElementById('channelDesc').value.trim();
+
+    if (!channelName || !channelDesc) {
+      alert('Пожалуйста, заполните все поля.');
+      return;
+    }
+
+    // Собираем данные в один блок (вы можете использовать JSON)
+    const channelData = `Название: ${channelName}\nОписание: ${channelDesc}`;
+    const encodedData = encodeData(channelData);
+
+    // Формируем deep‑link параметр с префиксом "reg:"
+    const deepLinkParam = `reg:${encodedData}`;
+
+    // Формируем ссылку для Telegram‑бота
+    const botUsername = "Hellbrush_web_bot"; // Ваш BOT_USERNAME
+    const deepLinkURL = `https://t.me/${botUsername}?start=${encodeURIComponent(deepLinkParam)}`;
+
+    // Выводим ссылку на страницу
+    const outputDiv = document.getElementById('deepLinkOutput');
+    outputDiv.innerHTML = `<p>Нажмите на ссылку, чтобы зарегистрировать канал:</p>
+                           <a href="${deepLinkURL}" class="text-blue-400 underline">${deepLinkURL}</a>`;
+  });
+</script>
+</html>
