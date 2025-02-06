@@ -6,53 +6,6 @@
   <title>Hellbrush Guild — Продвижение авторов</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    /* Стили модального окна для регистрации */
-    .modal {
-      display: none; /* Скрыто по умолчанию */
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-    .modal-content {
-      background-color: #1f1f1f;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 500px;
-      border-radius: 10px;
-      color: var(--text, #e0e0e0);
-    }
-    .modal-content input,
-    .modal-content button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #333;
-      background: #121212;
-      color: #e0e0e0;
-    }
-    .modal-content button {
-      background: linear-gradient(45deg, var(--accent, #BB86FC), var(--secondary, #3700B3));
-      border: none;
-      cursor: pointer;
-    }
-    .modal-content button:hover {
-      opacity: 0.9;
-    }
-    .close-modal {
-      float: right;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
   <!-- Шапка -->
@@ -76,11 +29,11 @@
     <section class="hero">
       <h2>Добро пожаловать в Hellbrush Guild</h2>
       <p>Платформа для творческого продвижения Telegram‑каналов. Регистрируйте свои каналы, участвуйте в играх и поднимайтесь в рейтинге!</p>
-      <!-- Кнопка открытия формы регистрации -->
+      <!-- Кнопка для открытия формы регистрации -->
       <a class="btn" href="#" id="openRegistration">Зарегистрировать канал</a>
     </section>
 
-    <!-- Раздел рейтинга каналов (пример статичных данных) -->
+    <!-- Раздел рейтинга каналов (статичный пример) -->
     <section id="channels" class="catalog">
       <h2>Рейтинг каналов</h2>
       <div class="channel-list">
@@ -120,10 +73,9 @@
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
       <h2>Регистрация канала</h2>
+      <p>Ваше имя и профиль будут подтянуты из Telegram.</p>
       <form id="registrationForm">
-        <input type="text" id="channelName" placeholder="Название канала" required>
-        <input type="url" id="channelLink" placeholder="Ссылка на канал" required>
-        <input type="text" id="channelDescription" placeholder="Описание канала" required>
+        <input type="text" id="channelInfo" placeholder="Введите ваш канал (например, @YourChannel или ссылка)" required>
         <button type="submit" class="btn">Зарегистрировать</button>
       </form>
     </div>
@@ -131,10 +83,9 @@
 
   <!-- Скрипты -->
   <script>
-    // Получаем данные пользователя из Telegram WebApp API
-    // Предполагается, что Telegram WebApp API уже подключён и доступен через window.Telegram.WebApp
+    // Получаем данные пользователя из Telegram WebApp API, если доступно
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-    const currentUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : { id: null };
+    const currentUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : { id: null, first_name: "Unknown", username: "" };
 
     // Модальное окно
     const modal = document.getElementById('registrationModal');
@@ -157,20 +108,18 @@
       }
     });
 
-    // Обработка отправки формы регистрации
     registrationForm.addEventListener('submit', function(event) {
       event.preventDefault();
       
       // Собираем данные формы
       const channelData = {
-        channelName: document.getElementById('channelName').value,
-        channelLink: document.getElementById('channelLink').value,
-        channelDescription: document.getElementById('channelDescription').value,
-        user_id: currentUser.id  // передаем user_id из Telegram WebApp API
+        firstName: currentUser.first_name,
+        username: currentUser.username,
+        user_id: currentUser.id,
+        channelInfo: document.getElementById('channelInfo').value
       };
 
-      // Отправка данных на API для регистрации канала
-      // Замените URL ниже на ваш реальный API-эндпоинт
+      // Отправляем данные на API для регистрации канала
       fetch('https://your-api-endpoint/register_channel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -180,7 +129,6 @@
       .then(data => {
         alert('Канал успешно зарегистрирован!');
         modal.style.display = 'none';
-        // Здесь можно обновить данные личного кабинета, если требуется
       })
       .catch(error => {
         console.error('Ошибка регистрации:', error);
@@ -188,7 +136,6 @@
       });
     });
 
-    // Динамическая смена темы, если WebApp открыт в Telegram
     (function() {
       if (tg && tg.colorScheme === 'dark') {
         document.documentElement.style.setProperty('--background', '#121212');
