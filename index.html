@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Навигация -->
+  <!-- Шапка -->
   <header>
     <div class="header-container">
       <h1>Hellbrush Guild</h1>
@@ -28,7 +28,7 @@
     <!-- Блок приветствия -->
     <section class="hero">
       <h2>Добро пожаловать в Hellbrush Guild</h2>
-      <p>Платформа для творческого продвижения Telegram-каналов. Зарегистрируй свой канал, получай бонусы, развивай свою сеть и поднимайся в рейтинге!</p>
+      <p>Платформа для творческого продвижения Telegram‑каналов. Регистрируйте свои каналы, участвуйте в играх и поднимайтесь в рейтинге!</p>
       <a class="btn" href="https://t.me/Hellbrush_web_bot?start=registration" target="_blank">Зарегистрировать канал</a>
     </section>
 
@@ -36,7 +36,7 @@
     <section id="channels" class="catalog">
       <h2>Рейтинг каналов</h2>
       <div class="channel-list">
-        <!-- Пример карточек. Данные можно подтягивать динамически через API -->
+        <!-- Здесь данные можно подтягивать через API; пока приведены статичные примеры -->
         <div class="channel-card">
           <h3>@ArtChannelOne</h3>
           <p>Канал о цифровом искусстве и 3D моделировании.</p>
@@ -55,10 +55,10 @@
       </div>
     </section>
 
-    <!-- Личный кабинет (переход осуществляется на отдельном сервисе, но ссылка указывается) -->
+    <!-- Личный кабинет -->
     <section id="cabinet" class="profile">
       <h2>Личный кабинет</h2>
-      <p>Просматривайте статистику вашего канала, следите за рейтингом и обновляйте информацию в режиме реального времени.</p>
+      <p>Здесь вы можете просмотреть статистику вашего канала и управлять информацией.</p>
       <a class="btn" href="https://t.me/Hellbrush_web_bot?start=cabinet" target="_blank">Перейти в кабинет</a>
     </section>
   </main>
@@ -68,8 +68,8 @@
     <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
   </footer>
   
-  <!-- Скрипт для динамической смены темы (если интегрирован с Telegram WebApp) -->
   <script>
+    // Пример динамической смены темы, если WebApp открыт внутри Telegram
     (function() {
       if (window.Telegram && window.Telegram.WebApp) {
         const tg = window.Telegram.WebApp;
