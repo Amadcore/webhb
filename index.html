@@ -6,9 +6,56 @@
   <title>Hellbrush Guild — Продвижение авторов</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Стили модального окна */
+    .modal {
+      display: none; 
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .modal-content {
+      background-color: #1f1f1f;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 10px;
+      color: var(--text, #e0e0e0);
+    }
+    .modal-content input,
+    .modal-content button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background: #121212;
+      color: #e0e0e0;
+    }
+    .modal-content button {
+      background: linear-gradient(45deg, var(--accent, #BB86FC), var(--secondary, #3700B3));
+      border: none;
+      cursor: pointer;
+    }
+    .modal-content button:hover {
+      opacity: 0.9;
+    }
+    .close-modal {
+      float: right;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <!-- Шапка -->
+  <!-- Шапка сайта -->
   <header>
     <div class="header-container">
       <h1>Hellbrush Guild</h1>
@@ -25,31 +72,30 @@
 
   <!-- Основной контент -->
   <main class="container" id="home">
-    <!-- Блок приветствия -->
     <section class="hero">
       <h2>Добро пожаловать в Hellbrush Guild</h2>
-      <p>Платформа для творческого продвижения Telegram‑каналов. Регистрируйте свои каналы, участвуйте в играх и поднимайтесь в рейтинге!</p>
-      <!-- Кнопка для открытия формы регистрации -->
+      <p>Платформа для творческого продвижения Telegram‑каналов. Регистрируйте свои каналы и поднимайтесь в рейтинге!</p>
+      <!-- Кнопка, открывающая модальное окно регистрации -->
       <a class="btn" href="#" id="openRegistration">Зарегистрировать канал</a>
     </section>
 
-    <!-- Раздел рейтинга каналов (статичный пример) -->
+    <!-- Пример раздела рейтинга (статичные данные) -->
     <section id="channels" class="catalog">
       <h2>Рейтинг каналов</h2>
       <div class="channel-list">
         <div class="channel-card">
           <h3>@ArtChannelOne</h3>
-          <p>Канал о цифровом искусстве и 3D моделировании.</p>
+          <p>Цифровое искусство и 3D моделирование.</p>
           <div class="rating">Рейтинг: 4.8/5</div>
         </div>
         <div class="channel-card">
           <h3>@CreativeHub</h3>
-          <p>Площадка для талантливых авторов, советы и мастер-классы.</p>
+          <p>Советы и мастер-классы для авторов.</p>
           <div class="rating">Рейтинг: 4.5/5</div>
         </div>
         <div class="channel-card">
           <h3>@DesignZone</h3>
-          <p>Новости дизайна, тренды и лучшие проекты.</p>
+          <p>Тренды и новости дизайна.</p>
           <div class="rating">Рейтинг: 4.7/5</div>
         </div>
       </div>
@@ -58,7 +104,7 @@
     <!-- Личный кабинет -->
     <section id="cabinet" class="profile">
       <h2>Личный кабинет</h2>
-      <p>Здесь вы можете просмотреть статистику вашего канала и управлять информацией.</p>
+      <p>Просматривайте статистику вашего канала и управляйте информацией.</p>
       <a class="btn" href="https://t.me/Hellbrush_web_bot?start=cabinet" target="_blank">Перейти в кабинет</a>
     </section>
   </main>
@@ -68,14 +114,15 @@
     <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
   </footer>
 
-  <!-- Модальное окно для регистрации канала -->
+  <!-- Модальное окно регистрации -->
   <div id="registrationModal" class="modal">
     <div class="modal-content">
       <span class="close-modal" id="closeModal">&times;</span>
       <h2>Регистрация канала</h2>
-      <p>Ваше имя и профиль будут подтянуты из Telegram.</p>
+      <p>Ваши данные (имя, профиль) подтягиваются из Telegram.</p>
       <form id="registrationForm">
-        <input type="text" id="channelInfo" placeholder="Введите ваш канал (например, @YourChannel или ссылка)" required>
+        <!-- Здесь пользователь вводит только данные о своем канале -->
+        <input type="text" id="channelInfo" placeholder="Введите ваш канал (например, @YourChannel или полная ссылка)" required>
         <button type="submit" class="btn">Зарегистрировать</button>
       </form>
     </div>
@@ -83,9 +130,11 @@
 
   <!-- Скрипты -->
   <script>
-    // Получаем данные пользователя из Telegram WebApp API, если доступно
+    // Если WebApp открыт в Telegram, получаем данные пользователя через Telegram WebApp API
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-    const currentUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : { id: null, first_name: "Unknown", username: "" };
+    const currentUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user 
+                        ? tg.initDataUnsafe.user 
+                        : { id: null, first_name: "Unknown", username: "" };
 
     // Модальное окно
     const modal = document.getElementById('registrationModal');
@@ -110,8 +159,7 @@
 
     registrationForm.addEventListener('submit', function(event) {
       event.preventDefault();
-      
-      // Собираем данные формы
+      // Собираем данные: данные пользователя подтягиваются автоматически
       const channelData = {
         firstName: currentUser.first_name,
         username: currentUser.username,
@@ -120,7 +168,7 @@
       };
 
       // Отправляем данные на API для регистрации канала
-      fetch('https://your-api-endpoint/register_channel', {
+      fetch('http://127.0.0.1:5002/register_channel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(channelData)
@@ -136,6 +184,7 @@
       });
     });
 
+    // Динамическая смена темы, если WebApp открыт в Telegram
     (function() {
       if (tg && tg.colorScheme === 'dark') {
         document.documentElement.style.setProperty('--background', '#121212');
