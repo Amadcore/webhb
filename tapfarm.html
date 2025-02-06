@@ -2,18 +2,17 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hellbrush TapFarm</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* Дополнительные стили, специфичные для страницы игры */
+    /* Дополнительные стили специфичные для страницы игры */
     body {
       background-color: var(--background, #121212);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       padding: 20px;
       min-height: 100vh;
     }
@@ -23,99 +22,14 @@
       text-align: center;
     }
     header { margin-bottom: 20px; }
-    footer { margin-top: 40px; font-size: 0.9rem; color: #8e8e93; }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-      background: linear-gradient(45deg, var(--accent, #BB86FC), #3700B3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    main {
-      width: 100%;
-      max-width: 600px;
-      background: var(--background, #121212);
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      padding: 30px;
-      text-align: center;
-      color: var(--text, #e0e0e0);
-    }
-    /* Игровая зона */
-    #tap-area {
-      width: 220px;
-      height: 220px;
-      background: linear-gradient(45deg, var(--accent, #BB86FC), #3700B3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: #ffffff;
-      cursor: pointer;
-      user-select: none;
-      position: relative;
-      margin: 0 auto 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-    #like-counter {
-      font-size: 1.4rem;
-      margin-bottom: 20px;
-    }
-    .heart {
-      position: absolute;
-      font-size: 1.6rem;
-      color: #ff453a;
-      animation: floatUp 1s ease-out forwards;
-      pointer-events: none;
-    }
-    @keyframes floatUp {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-    }
-    /* Блок прокачки */
-    .upgrade {
-      background: #2c2c2e;
-      border: 1px solid #444;
-      padding: 20px;
-      margin: 20px auto;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    }
-    .upgrade p {
-      margin-bottom: 10px;
-      font-size: 1rem;
-      color: #c0c0c0;
-    }
-    /* Кнопка "Назад" */
-    .back-btn {
-      margin-top: 20px;
-      background: #8e8e93;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      color: #ffffff;
-      display: inline-block;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .back-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
+    footer { margin-top: 40px; font-size: 0.9rem; }
   </style>
 </head>
 <body>
   <header>
     <h1>Hellbrush TapFarm</h1>
   </header>
-  <main>
+  <main class="container">
     <!-- Игровой интерфейс -->
     <div id="tap-area">Тап!</div>
     <div id="like-counter">0 Лайков</div>
@@ -129,15 +43,14 @@
     
     <!-- Кнопка сброса прогресса -->
     <button class="btn" onclick="resetGame()">Сбросить прогресс</button>
-    <!-- Кнопка для возврата на главный сайт -->
+    <!-- Кнопка для возврата на сайт -->
     <br>
-    <a href="index.html" class="back-btn">Вернуться на платформу</a>
+    <a href="index.html" class="back-btn">Вернуться на сайт</a>
   </main>
   <footer>
     <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
   </footer>
   
-  <!-- Подключаем игровой скрипт -->
   <script src="js/game.js"></script>
 </body>
 </html>

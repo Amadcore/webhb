@@ -2,97 +2,78 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hellbrush Guild</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hellbrush Guild — Продвижение авторов</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Шапка -->
+  <!-- Навигация -->
   <header>
     <div class="header-container">
       <h1>Hellbrush Guild</h1>
       <nav>
         <ul>
-          <li><a href="#hero">Главная</a></li>
-          <li><a href="#catalog">Каталог</a></li>
-          <li><a href="#profile">Личный кабинет</a></li>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#channels">Каналы</a></li>
+          <li><a href="#cabinet">Личный кабинет</a></li>
           <li><a href="tapfarm.html">Игра</a></li>
         </ul>
       </nav>
     </div>
   </header>
-  
+
   <!-- Основной контент -->
-  <main class="container">
-    <!-- Hero секция -->
-    <section id="hero" class="hero">
+  <main class="container" id="home">
+    <!-- Блок приветствия -->
+    <section class="hero">
       <h2>Добро пожаловать в Hellbrush Guild</h2>
-      <p>Платформа для творческого продвижения Telegram‑каналов. Мы объединяем талантливых авторов, чтобы вы стали настоящей звездой в мире креатива.</p>
-      <a class="btn" href="tapfarm.html">Начни прокачку</a>
-      <div class="subscribe-notice">
-        <p>Для участия в рейтингах обязательна подписка:</p>
-        <!-- Замените ссылку ниже на актуальный канал -->
-        <a class="btn" href="https://t.me/hellbrush_art" target="_blank">Подпишись на @hellbrush_art</a>
-        <p>и на наши партнерские каналы.</p>
-      </div>
+      <p>Платформа для творческого продвижения Telegram-каналов. Зарегистрируй свой канал, получай бонусы, развивай свою сеть и поднимайся в рейтинге!</p>
+      <a class="btn" href="https://t.me/Hellbrush_web_bot?start=registration" target="_blank">Зарегистрировать канал</a>
     </section>
-    
-    <!-- Каталог каналов -->
-    <section id="catalog" class="catalog">
-      <h2>Каталог каналов</h2>
+
+    <!-- Раздел рейтинга каналов -->
+    <section id="channels" class="catalog">
+      <h2>Рейтинг каналов</h2>
       <div class="channel-list">
-        <!-- Пример карточек. В реальном проекте данные можно подтягивать через API -->
+        <!-- Пример карточек. Данные можно подтягивать динамически через API -->
         <div class="channel-card">
-          <h3>@artchannel1</h3>
+          <h3>@ArtChannelOne</h3>
           <p>Канал о цифровом искусстве и 3D моделировании.</p>
           <div class="rating">Рейтинг: 4.8/5</div>
         </div>
         <div class="channel-card">
-          <h3>@creativehub</h3>
-          <p>Площадка для творческих людей, советы и мастер-классы.</p>
+          <h3>@CreativeHub</h3>
+          <p>Площадка для талантливых авторов, советы и мастер-классы.</p>
           <div class="rating">Рейтинг: 4.5/5</div>
         </div>
         <div class="channel-card">
-          <h3>@designzone</h3>
+          <h3>@DesignZone</h3>
           <p>Новости дизайна, тренды и лучшие проекты.</p>
           <div class="rating">Рейтинг: 4.7/5</div>
         </div>
       </div>
     </section>
-    
-    <!-- Личный кабинет -->
-    <section id="profile" class="profile">
+
+    <!-- Личный кабинет (переход осуществляется на отдельном сервисе, но ссылка указывается) -->
+    <section id="cabinet" class="profile">
       <h2>Личный кабинет</h2>
-      <div class="stats">
-        <div>
-          <span id="user-invites">0</span>
-          Приглашений
-        </div>
-        <div>
-          <span id="user-rank">Новичок</span>
-          Ранг
-        </div>
-      </div>
-      <p>Получайте бонусы за активность и прокачивайте свой канал с Hellbrush Guild!</p>
-      <!-- Измените ссылку ниже на корректную ссылку вашего бота -->
-      <a class="btn" href="https://t.me/Hellbrush_web_bot?start=profile" target="_blank">Управлять аккаунтом</a>
+      <p>Просматривайте статистику вашего канала, следите за рейтингом и обновляйте информацию в режиме реального времени.</p>
+      <a class="btn" href="https://t.me/Hellbrush_web_bot?start=cabinet" target="_blank">Перейти в кабинет</a>
     </section>
   </main>
-  
+
   <!-- Футер -->
   <footer>
     <p>&copy; 2025 Hellbrush Guild. Все права защищены.</p>
   </footer>
   
-  <!-- Скрипт для динамической темы -->
+  <!-- Скрипт для динамической смены темы (если интегрирован с Telegram WebApp) -->
   <script>
     (function() {
-      // Если сайт открыт внутри Telegram WebApp, можно получить информацию о цветовой схеме:
       if (window.Telegram && window.Telegram.WebApp) {
         const tg = window.Telegram.WebApp;
-        // По умолчанию принудительно устанавливаем тёмную тему, если Telegram настроен на dark
-        if (tg.colorScheme && tg.colorScheme === 'dark') {
+        if (tg.colorScheme === 'dark') {
           document.documentElement.style.setProperty('--background', '#121212');
           document.documentElement.style.setProperty('--text', '#e0e0e0');
           document.documentElement.style.setProperty('--accent', '#BB86FC');
