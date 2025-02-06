@@ -7,10 +7,19 @@
 html {
   scroll-behavior: smooth;
 }
+/* Используем CSS-переменные для темы */
+:root {
+  --background: #121212;
+  --text: #e0e0e0;
+  --accent: #BB86FC;
+  --secondary: #3700B3;
+}
+
+/* Базовые стили */
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #121212; /* Тёмный фон */
-  color: #e0e0e0;            /* Светлый текст */
+  background-color: var(--background);
+  color: var(--text);
   line-height: 1.6;
 }
 
@@ -40,11 +49,11 @@ header {
 header h1 {
   font-size: 2rem;
   font-weight: 700;
-  color: #BB86FC; /* Акцентный фиолетовый */
+  color: var(--accent);
 }
 nav ul {
   display: flex;
-  flex-wrap: wrap; /* Позволяет переносить пункты на новую строку на узких экранах */
+  flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -56,10 +65,10 @@ nav ul li a {
   font-size: 1rem;
   font-weight: 500;
   transition: color 0.3s ease;
-  color: #e0e0e0;
+  color: var(--text);
 }
 nav ul li a:hover {
-  color: #BB86FC;
+  color: var(--accent);
 }
 
 /* Основной контейнер */
@@ -78,7 +87,7 @@ section:last-of-type {
   border-bottom: none;
 }
 
-/* Hero секция (Главная страница) */
+/* Hero секция */
 .hero {
   text-align: center;
 }
@@ -86,7 +95,7 @@ section:last-of-type {
   font-size: 2.5rem;
   margin-bottom: 20px;
   font-weight: 700;
-  color: #BB86FC;
+  color: var(--accent);
 }
 .hero p {
   font-size: 1.1rem;
@@ -96,7 +105,7 @@ section:last-of-type {
 }
 .btn {
   display: inline-block;
-  background: linear-gradient(45deg, #BB86FC, #3700B3);
+  background: linear-gradient(45deg, var(--accent), var(--secondary));
   color: #ffffff;
   padding: 12px 30px;
   border-radius: 10px;
@@ -133,7 +142,7 @@ section:last-of-type {
   font-size: 2rem;
   margin-bottom: 30px;
   font-weight: 700;
-  color: #BB86FC;
+  color: var(--accent);
 }
 .channel-list {
   display: grid;
@@ -153,7 +162,7 @@ section:last-of-type {
 .channel-card h3 {
   font-size: 1.25rem;
   margin-bottom: 10px;
-  color: #BB86FC;
+  color: var(--accent);
 }
 .channel-card p {
   font-size: 0.95rem;
@@ -162,7 +171,7 @@ section:last-of-type {
 }
 .rating {
   font-size: 0.9rem;
-  color: #BB86FC;
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -179,7 +188,7 @@ section:last-of-type {
 .profile h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #BB86FC;
+  color: var(--accent);
 }
 .profile .stats {
   display: flex;
@@ -193,68 +202,7 @@ section:last-of-type {
   display: block;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #BB86FC;
-}
-
-/* Игровая секция (например, для TapFarm) */
-.game-section {
-  text-align: center;
-}
-.game-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-weight: 700;
-  color: #BB86FC;
-}
-#tap-area {
-  width: 220px;
-  height: 220px;
-  background: linear-gradient(45deg, #BB86FC, #3700B3);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: #ffffff;
-  cursor: pointer;
-  user-select: none;
-  position: relative;
-  margin: 0 auto 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-#like-counter {
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-}
-.heart {
-  position: absolute;
-  font-size: 1.6rem;
-  color: #ff453a;
-  animation: floatUp 1s ease-out forwards;
-  pointer-events: none;
-}
-@keyframes floatUp {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-}
-.upgrade {
-  background: #2c2c2e;
-  border: 1px solid #444;
-  padding: 20px;
-  margin: 20px auto;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-}
-.upgrade p {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  color: #c0c0c0;
+  color: var(--accent);
 }
 
 /* Футер */

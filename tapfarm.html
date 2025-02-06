@@ -9,7 +9,7 @@
   <style>
     /* Дополнительные стили, специфичные для страницы игры */
     body {
-      background-color: #f2f2f7;
+      background-color: var(--background, #121212);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -28,24 +28,25 @@
       font-size: 2rem;
       margin-bottom: 20px;
       font-weight: 700;
-      background: linear-gradient(45deg, #6366f1, #a855f7);
+      background: linear-gradient(45deg, var(--accent, #BB86FC), #3700B3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     main {
       width: 100%;
       max-width: 600px;
-      background: #ffffff;
+      background: var(--background, #121212);
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
       padding: 30px;
       text-align: center;
+      color: var(--text, #e0e0e0);
     }
     /* Игровая зона */
     #tap-area {
       width: 220px;
       height: 220px;
-      background: linear-gradient(45deg, #6366f1, #a855f7);
+      background: linear-gradient(45deg, var(--accent, #BB86FC), #3700B3);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -56,7 +57,7 @@
       user-select: none;
       position: relative;
       margin: 0 auto 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
     #like-counter {
       font-size: 1.4rem;
@@ -70,19 +71,29 @@
       pointer-events: none;
     }
     @keyframes floatUp {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(-50px); }
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
     }
     /* Блок прокачки */
     .upgrade {
-      background: #f9f9f9;
-      border: 1px solid #d1d1d6;
+      background: #2c2c2e;
+      border: 1px solid #444;
       padding: 20px;
-      margin: 20px 0;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
-    .upgrade p { margin-bottom: 10px; font-size: 1rem; color: #3c3c43; }
+    .upgrade p {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #c0c0c0;
+    }
     /* Кнопка "Назад" */
     .back-btn {
       margin-top: 20px;
@@ -94,7 +105,10 @@
       display: inline-block;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .back-btn:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body>

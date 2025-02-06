@@ -3,14 +3,14 @@ let likes = 0;
 let multiplier = 1;
 let upgradeCost = 10;
 
-// Функция для обновления отображения
+// Функция обновления отображения игры
 function updateGameDisplay() {
   document.getElementById('like-counter').textContent = likes + (likes === 1 ? ' Лайк' : ' Лайков');
   document.getElementById('multiplier').textContent = multiplier;
   document.getElementById('upgrade-cost').textContent = upgradeCost;
 }
 
-// Сохранение прогресса
+// Сохранение прогресса в LocalStorage
 function saveGame() {
   localStorage.setItem('tapfarm_likes', likes);
   localStorage.setItem('tapfarm_multiplier', multiplier);
@@ -28,7 +28,7 @@ function loadGame() {
   updateGameDisplay();
 }
 
-// Обработка клика по зоне
+// Обработка клика по игровой зоне
 const tapArea = document.getElementById('tap-area');
 tapArea.addEventListener('click', function(e) {
   likes += multiplier;
@@ -72,5 +72,5 @@ function resetGame() {
   }
 }
 
-// Инициализация
+// Инициализация загрузки игры
 loadGame();
