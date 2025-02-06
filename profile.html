@@ -4,64 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Hellbrush Guild – Мой профиль</title>
-  <!-- Подключение Tailwind CSS через CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Подключение собственного файла стилей -->
-  <link rel="stylesheet" href="styles.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      const userId = localStorage.getItem("user_id");
+      if (!userId) {
+        window.location.href = "register.html"; // Перенаправление на регистрацию
+        return;
+      }
+
+      try {
+        const response = await fetch(`/profile/${userId}`);
+        const data = await response.json();
+
+        if (data.error) {
+          document.getElementById("profile-container").innerHTML = "<p>Ошибка: " + data.error + "</p>";
+          return;
+        }
+
+        document.getElementById("profileName").textContent = data.name || "Неизвестный";
+        document.getElementById("profileDesc").textContent = data.description || "Описание отсутствует";
+        document.getElementById("profileRating").textContent = data.rating || "5.0";
+        document.getElementById("profileBonuses").textContent = data.bonuses || "0";
+        document.getElementById("profileAchievements").textContent = data.achievements || "0";
+      } catch (error) {
+        console.error("Ошибка загрузки профиля:", error);
+      }
+    });
+  </script>
 </head>
 <body class="bg-gray-900 text-white">
-  <!-- Шапка -->
   <header class="header fixed top-0 left-0 w-full z-50">
     <div class="container mx-auto flex justify-between items-center px-4 py-3">
       <h1 class="logo text-xl font-bold">Hellbrush Guild</h1>
-      <div class="flex items-center space-x-4">
-        <a href="index.html" class="nav-link text-sm">Главная</a>
-      </div>
+      <a href="index.html" class="nav-link text-sm">Главная</a>
     </div>
   </header>
 
-  <!-- Основной контент -->
   <main class="pt-20">
-    <!-- Секция профиля -->
     <section class="profile-section py-8">
       <div class="container mx-auto px-4">
-        <h2 class="section-title text-2xl font-bold mb-4">Мой профиль</h2>
-        <div class="profile-card bg-gray-800 rounded-xl p-6 shadow-md flex flex-col sm:flex-row items-center">
-          <!-- Изображение профиля -->
-          <img class="w-32 h-32 rounded-full object-cover" src="https://cdn4.cdn-telegram.org/file/WUdBYnf424_K75ne0ozVUmS6sbKojM_WfVGYlGmWPg5bcKxCRRexhzB_tkzd0k0c6vni7wrJ5PKs_-8t49l3ZVhUqHgCTT9wM-DH8dDn3uYFAdGEWeJ8aZWS3fdk5chB_shxm7laobTL8tCEnqJqpfWTcO2pPtjMuiFtjs0ddWv9nty8f00huO9Brw0jUBrLnKuYTB3P8Ccbp1N9Wsjl1Q6sVOJet_I-iNHGxf8GIY6JwvvK4JOl9RXG3IlZYFJ6vbTv24lDxeYUPftvTMlIVVNDaz6StT6qqhKZuDy4N3c9We7J-OFfpUrgk9uxIEHRuBNa3RsvZq0AIe0exerNRQ.jpg" alt="HELLBRUSH">
-          <!-- Информация профиля -->
-          <div class="mt-4 sm:mt-0 sm:ml-6">
-            <h3 class="text-2xl font-bold">HELLBRUSH</h3>
-            <p class="text-lg text-gray-300">Art Director and VisDev</p>
-            <p class="mt-2 text-sm text-gray-400">Делаю крутую графику</p>
-            <!-- Блок с дополнительной информацией -->
-            <div class="mt-4 flex items-center space-x-6">
-              <div class="flex flex-col items-center">
-                <span class="text-xl font-bold">5.0</span>
-                <span class="text-xs text-gray-400">Рейтинг</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <span class="text-xl font-bold">10</span>
-                <span class="text-xs text-gray-400">Бонусов</span>
-              </div>
-              <div class="flex flex-col items-center">
-                <span class="text-xl font-bold">3</span>
-                <span class="text-xs text-gray-400">Ачивки</span>
-              </div>
-            </div>
-            <!-- Кнопка редактирования профиля (можно доработать функционал) -->
-            <a href="#" class="main-btn mt-4 inline-block">Редактировать профиль</a>
+        <h2 class="text-2xl font-bold mb-4">Мой профиль</h2>
+        <div id="profile-container" class="bg-gray-800 rounded-xl p-6 shadow-md">
+          <h3 class="text-2xl font-bold" id="profileName">Загрузка...</h3>
+          <p class="text-lg text-gray-300" id="profileDesc"></p>
+          <div class="flex items-center space-x-6 mt-4">
+            <div><span id="profileRating" class="text-xl font-bold">-</span> <span class="text-xs text-gray-400">Рейтинг</span></div>
+            <div><span id="profileBonuses" class="text-xl font-bold">-</span> <span class="text-xs text-gray-400">Бонусов</span></div>
+            <div><span id="profileAchievements" class="text-xl font-bold">-</span> <span class="text-xs text-gray-400">Ачивки</span></div>
           </div>
+          <a href="edit-profile.html" class="main-btn mt-4 inline-block">Редактировать профиль</a>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- Футер -->
-  <footer class="footer py-4">
-    <div class="container mx-auto px-4 text-center text-gray-500 text-xs">
-      &copy; 2025 Hellbrush Guild. Все права защищены.
-    </div>
-  </footer>
 </body>
 </html>
